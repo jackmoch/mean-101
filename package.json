@@ -20,5 +20,8 @@
   "homepage": "https://github.com/jackmoch/mean-101#readme",
   "dependencies": {
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9"
   }
 }
