@@ -38,13 +38,21 @@ angular
 				content: $scope.content
 			}
 
-			$http.post('/api/messages', msg)
-			.then(() => $scope.messages.push(msg))
-			.catch(console.error)
+			socket.emit('postMessage', msg)
+
+		// 	$http.post('/api/messages', msg)
+		// 	.then(() => $scope.messages.push(msg))
+		// 	.catch(console.error)
 		}
+
 
 		$http.get('/api/messages')
 			.then(({ data : { messages }}) => {
 				$scope.messages = messages
 			})
+
+		socket.on('newMessage', (msg) => {
+			$scope.messages.push(msg)
+			$scope.$apply()
+		})
 	})
