@@ -48,3 +48,10 @@ mongoose.Promise = Promise
 mongoose.connect(MONGODB_URL, () => {
 	server.listen(PORT, () => console.log(`Listening on port ${PORT}`))
 })
+
+io.on('connection', (socket) => {
+	console.log(`Socket connected: ${socket.id}`)
+	socket.on('disconnect', () => {
+		console.log(`Socket disconnected: ${socket.id}`)
+	})
+})
