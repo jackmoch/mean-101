@@ -34,7 +34,7 @@ angular
 		}
 
 		$http.get('/api/messages')
-		.then(({ data : { messages }}) => {
-			$scope.messages = messages
-		})
+			.then(({ data : { messages }}) => {
+				$scope.messages = messages
+			})
 	})
