@@ -2,7 +2,7 @@
 
 const socket = io()
 
-socket.on('connect' () => {
+socket.on('connect', () => {
 	console.log(`Socket connected`, socket)
 })
 
