@@ -1,10 +1,15 @@
 'use strict';
 
 const { json } = require('body-parser')
+const { Server } = require('http')
 const express = require('express')
 const mongoose = require('mongoose')
+const socketio = require('socket.io')
 
 const app = express()
+const server = Server(app)
+const io = socketio(server)
+
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/meanchat'
 const PORT = process.env.PORT || 3000
 
@@ -41,5 +46,5 @@ app.post('/api/messages', (req, res, err) => {
 
 mongoose.Promise = Promise
 mongoose.connect(MONGODB_URL, () => {
-	app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+	server.listen(PORT, () => console.log(`Listening on port ${PORT}`))
 })
