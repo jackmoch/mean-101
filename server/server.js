@@ -54,4 +54,10 @@ io.on('connection', (socket) => {
 	socket.on('disconnect', () => {
 		console.log(`Socket disconnected: ${socket.id}`)
 	})
+	socket.on('postMessage', (msg) => {
+		Message
+			.create(msg)
+			.then(msg => io.emit('newMessage', msg))
+			.catch(console.error)
+	})
 })
