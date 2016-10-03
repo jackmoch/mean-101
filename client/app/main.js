@@ -38,11 +38,13 @@ angular
 				content: $scope.content
 			}
 
-			socket.emit('postMessage', msg)
+			if (socket.connected) {
+				socket.emit('postMessage', msg)
+			}
 
-		// 	$http.post('/api/messages', msg)
-		// 	.then(() => $scope.messages.push(msg))
-		// 	.catch(console.error)
+			$http.post('/api/messages', msg)
+			.then(() => $scope.messages.push(msg))
+			.catch(console.error)
 		}
 
 
