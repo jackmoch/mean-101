@@ -40,7 +40,11 @@ app.post('/api/messages', (req, res, err) => {
 	const msg = req.body
 	Message
 		.create(msg)
-		.then(msg => res.json(msg))
+		.then(msg => {
+			io.emit('newMessage', msg)
+			return msg
+		})
+		.then(msg => {res.json(msg)})
 		.catch(err)
 })
 
